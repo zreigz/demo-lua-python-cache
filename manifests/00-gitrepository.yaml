@@ -7,7 +7,4 @@ metadata:
   namespace: infra
 spec:
   url: https://github.com/zreigz/demo-lua-python-cache.git
-  # Optional auth for private remotes:
-  # credentialsRef:
-  #   name: lua-python-cache-demo-git
-  #   namespace: infra
+
