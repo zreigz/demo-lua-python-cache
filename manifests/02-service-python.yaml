@@ -1,0 +1,26 @@
+# Phase 2: switch values generation to pythonFile.
+# Apply AFTER pushing the migrate commit (values.lua removed, values.py present).
+#
+# Important: omit luaFile entirely. If your Console build does not clear omitted
+# helm fields, also clear lua via the UI/API (set luaFile to null) so the agent
+# does not keep trying to read values.lua.
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: lua-python-cache-demo
+  namespace: infra
+spec:
+  name: lua-python-cache-demo
+  namespace: lua-python-cache-demo
+  version: "0.0.2"
+  cluster: REPLACE_ME_CLUSTER_HANDLE
+  # repositoryRef:
+  #   name: REPLACE_ME_GIT_REPO
+  #   namespace: infra
+  git:
+    ref: main
+    folder: "."
+  helm:
+    pythonFile: values.py
+  syncConfig:
+    createNamespace: true

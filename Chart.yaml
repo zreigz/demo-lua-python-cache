@@ -1,0 +1,6 @@
+apiVersion: v2
+name: lua-python-cache-demo
+description: Minimal chart to reproduce luaFile -> pythonFile agent cache skew
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
