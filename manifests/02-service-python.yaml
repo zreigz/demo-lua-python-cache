@@ -13,10 +13,11 @@ spec:
   name: lua-python-cache-demo
   namespace: lua-python-cache-demo
   version: "0.0.2"
-  cluster: REPLACE_ME_CLUSTER_HANDLE
-  # repositoryRef:
-  #   name: REPLACE_ME_GIT_REPO
-  #   namespace: infra
+  cluster: lukasz
+  repositoryRef:
+    kind: GitRepository
+    name: lua-python-cache-demo
+    namespace: infra
   git:
     ref: main
     folder: "."

@@ -21,6 +21,7 @@ should recover without a restart.
 | `Chart.yaml` / `templates/` / `values.yaml` | Tiny chart; ConfigMap surfaces script output |
 | `values.lua` | Phase 1 values script (deleted during migration) |
 | `migrate/values.py` | Phase 2 script (copied to `values.py` by migrate script) |
+| `manifests/00-gitrepository.yaml` | Plural `GitRepository` for this remote |
 | `manifests/01-service-lua.yaml` | ServiceDeployment using `luaFile` |
 | `manifests/02-service-python.yaml` | Same service using `pythonFile` |
 | `scripts/migrate-to-python.sh` | Commit that removes `values.lua` and adds `values.py` |
@@ -35,14 +36,22 @@ git remote add origin <your-remote-url>
 git push -u origin main
 ```
 
-Register that remote as a Plural `GitRepository`, then edit both manifests:
-set `spec.cluster` and uncomment `repositoryRef` (or use `git.url`) for your environment.
+Edit placeholders, then apply the GitRepository before the service:
+
+1. `manifests/00-gitrepository.yaml` — set `spec.url`
+2. `manifests/01-service-lua.yaml` / `02-service-python.yaml` — set `spec.cluster`
+
+```bash
+kubectl apply -f manifests/00-gitrepository.yaml
+# wait until the GitRepository is healthy, then continue with the lua service
+```
 
 ## Reproduce
 
 ### 1. Deploy lua phase
 
 ```bash
+kubectl apply -f manifests/00-gitrepository.yaml
 kubectl apply -f manifests/01-service-lua.yaml
 ```
 

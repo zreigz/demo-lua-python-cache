@@ -1,0 +1,13 @@
+# Register this demo as a Plural GitRepository after pushing to a remote.
+# Replace spec.url with your clone URL (HTTPS or SSH).
+apiVersion: deployments.plural.sh/v1alpha1
+kind: GitRepository
+metadata:
+  name: lua-python-cache-demo
+  namespace: infra
+spec:
+  url: https://github.com/zreigz/demo-lua-python-cache.git
+  # Optional auth for private remotes:
+  # credentialsRef:
+  #   name: lua-python-cache-demo-git
+  #   namespace: infra

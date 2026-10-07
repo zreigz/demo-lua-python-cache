@@ -9,17 +9,14 @@ spec:
   name: lua-python-cache-demo
   namespace: lua-python-cache-demo
   version: "0.0.1"
-  cluster: REPLACE_ME_CLUSTER_HANDLE
-  # repositoryRef:
-  #   name: REPLACE_ME_GIT_REPO
-  #   namespace: infra
+  cluster: lukasz
+  repositoryRef:
+    kind: GitRepository
+    name: lua-python-cache-demo
+    namespace: infra
   git:
     ref: main
     folder: "."
-  # If this demo lives inside the console monorepo instead of its own remote:
-  # git:
-  #   ref: main
-  #   folder: demo-lua-python-cache
   helm:
     luaFile: values.lua
   syncConfig:
