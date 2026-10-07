@@ -27,20 +27,16 @@ should recover without a restart.
 
 ## Setup
 
-Use this directory as its **own** git remote (recommended), or point
-`spec.git.folder` at `demo-lua-python-cache` inside the console monorepo.
+This directory is already a standalone git repo on `main`.
 
 ```bash
-cd demo-lua-python-cache
-# if not already a git repo:
-git init -b main
-git add .
-git commit -m "initial lua-python cache demo"
-# push to a remote Plural can clone, then create/register a GitRepository
+cd /home/lukasz/GolandProjects/plural/demo-lua-python-cache
+git remote add origin <your-remote-url>
+git push -u origin main
 ```
 
-Edit both manifests: set `spec.cluster` and uncomment/`repositoryRef` (or `git.url`)
-for your environment.
+Register that remote as a Plural `GitRepository`, then edit both manifests:
+set `spec.cluster` and uncomment `repositoryRef` (or use `git.url`) for your environment.
 
 ## Reproduce
 
